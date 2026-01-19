@@ -4,7 +4,7 @@ require_once 'db_config.php';
 try {
     $sql = "CREATE TABLE IF NOT EXISTS steno_results (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        student_id INT NOT NULL,
+        student_id INT DEFAULT NULL,
         test_id INT NOT NULL,
         total_words INT DEFAULT 0,
         typed_words INT DEFAULT 0,

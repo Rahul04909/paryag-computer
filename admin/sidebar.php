@@ -36,8 +36,8 @@
             </a>
             <div class="sidebar-submenu">
                 <ul>
-                    <li><a href="#">All Tests</a></li>
-                    <li><a href="#">Create Test</a></li>
+                    <li><a href="../../admin/typing-test/index.php">All Tests</a></li>
+                    <li><a href="../../admin/typing-test/create-test.php">Create Test</a></li>
                     <li><a href="../../admin/steno-test/create-steno-category.php">Categories</a></li>
                     <li><a href="../../admin/steno-test/create-steno-test.php">Create Steno Test</a></li>
                 </ul>

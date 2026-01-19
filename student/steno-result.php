@@ -116,8 +116,8 @@ include 'header.php';
     }
 </style>
 
-    <div class="main-content w-100 bg-light">
-        <div class="container p-4">
+    <div class="bg-light min-vh-100">
+        <div class="container py-5">
             
             <!-- Result Header -->
             <div class="card shadow-sm border-0 rounded-4 mb-4">

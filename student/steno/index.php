@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['student_logged_in']) || $_SESSION['student_logged_in'] !== true) {
+/* if (!isset($_SESSION['student_logged_in']) || $_SESSION['student_logged_in'] !== true) {
     header("Location: ../login.php");
     exit;
-}
+} */
 
 require_once '../../database/db_config.php';
 

@@ -1,0 +1,212 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --sidebar-bg: #fff;
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 70px;
+    --text-color: #333;
+    --text-muted: #888;
+    --bg-light: #f4f6f9;
+    --transition: all 0.3s ease;
+    --shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    overflow-x: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--sidebar-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.sidebar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+    background: #f8f9fa;
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.sidebar-menu i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 25px;
+    text-align: center;
+}
+
+/* Dropdown */
+.sidebar-dropdown .sidebar-submenu {
+    display: none;
+    list-style: none;
+    background: #fafbfc;
+    padding-left: 20px;
+}
+
+.sidebar-dropdown.active > .sidebar-submenu {
+    display: block;
+}
+
+.sidebar-dropdown > a::after {
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s;
+}
+
+.sidebar-dropdown.active > a::after {
+    transform: rotate(180deg);
+}
+
+/* Content Area */
+.main-content {
+    margin-left: var(--sidebar-width);
+    transition: var(--transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Header */
+.top-header {
+    background: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle-sidebar-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Toggled State */
+body.toggled .sidebar {
+    width: var(--sidebar-collapsed-width);
+}
+
+body.toggled .sidebar .sidebar-brand-text,
+body.toggled .sidebar-menu span,
+body.toggled .sidebar-dropdown > a::after {
+    display: none;
+}
+
+body.toggled .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+body.toggled .sidebar-header {
+    padding: 20px 10px;
+}
+body.toggled .sidebar-brand-icon {
+    display: block !important;
+    font-size: 1.5rem;
+}
+body.toggled .sidebar-brand {
+    display: none;
+}
+
+/* Dashboard Cards */
+.card-stat {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.card-stat:hover {
+    transform: translateY(-5px);
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+}
+.bg-gradient-success {
+    background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+    color: #fff;
+}
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%); /* Adjusted for visibility or pick better orange */
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+}

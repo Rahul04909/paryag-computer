@@ -239,6 +239,25 @@ include '../header.php';
         } else {
             console.error("CKEditor failed to load.");
         }
+
+        // File Size Validation
+        const audioInput = document.querySelector('input[name="audio_file"]');
+        const form = document.querySelector('form');
+
+        if(audioInput) {
+            audioInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if(file) {
+                    const fileSize = file.size / 1024 / 1024; // in MB
+                    const maxSize = 64; // Max size in MB
+
+                    if(fileSize > maxSize) {
+                        alert(`File size exceeds ${maxSize}MB. Please upload a smaller file.`);
+                        this.value = ''; // Clear value
+                    }
+                }
+            });
+        }
     });
 </script>
 

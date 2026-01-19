@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $test_id = $_POST['test_id'] ?? null;
 $typed_content = $_POST['typed_content'] ?? '';
 $duration_taken = $_POST['duration_taken'] ?? 0; // Seconds
-$student_id = $_SESSION['student_id'] ?? 1; // Default to 1 if auth disabled for testing
+$student_id = $_SESSION['student_id'] ?? null; // Null for demo/guest user
 
 if (!$test_id) {
     die("Invalid request.");

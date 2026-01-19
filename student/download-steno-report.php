@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../database/db_config.php';
-require_once '../../vendor/autoload.php'; // Correct path to vendor? User said 'vendor' exists. 
+require_once '../vendor/autoload.php'; // Correct path from student/ mapped to root/vendor
 // Project root is `d:/wamp/www/paryag-computer`.
 // `download-steno-report.php` is in `student/`.
 // So autload is in `../vendor/autoload.php`. 
@@ -85,6 +85,11 @@ body { font-family: sans-serif; }
 ';
 
 // Build HTML
+$student_name = $data['student_name'] ?? 'Demo Student';
+$father_name = $data['father_name'] ?? 'Demo Father';
+$mother_name = $data['mother_name'] ?? 'Demo Mother';
+$contact = $data['contact_number'] ?? '9876543210';
+
 $html = '
 <div class="header">
     <img src="../assets/images/paryag-computer-logo.jpeg" class="logo">
@@ -95,12 +100,12 @@ $html = '
 <div class="section-title">Student Details</div>
 <table class="table">
     <tr>
-        <td class="label">Name:</td><td>' . htmlspecialchars($data['student_name'] ?? 'Guest Student') . '</td>
-        <td class="label">Father Name:</td><td>' . htmlspecialchars($data['father_name'] ?? '-') . '</td>
+        <td class="label">Name:</td><td>' . htmlspecialchars($student_name) . '</td>
+        <td class="label">Father Name:</td><td>' . htmlspecialchars($father_name) . '</td>
     </tr>
     <tr>
-        <td class="label">Mother Name:</td><td>' . htmlspecialchars($data['mother_name'] ?? '-') . '</td>
-        <td class="label">Mobile:</td><td>' . htmlspecialchars($data['contact_number'] ?? '-') . '</td>
+        <td class="label">Mother Name:</td><td>' . htmlspecialchars($mother_name) . '</td>
+        <td class="label">Mobile:</td><td>' . htmlspecialchars($contact) . '</td>
     </tr>
 </table>
 

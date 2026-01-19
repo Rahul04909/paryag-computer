@@ -72,11 +72,8 @@ include 'header.php';
     }
 </style>
 
-<div class="d-flex">
-    <?php include 'sidebar.php'; ?>
-    
     <div class="main-content w-100 bg-light">
-        <div class="container-fluid p-4">
+        <div class="container p-4">
             
             <div class="row g-4">
                 <!-- Main Typing Area -->

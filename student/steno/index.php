@@ -12,6 +12,45 @@ $limit = 10;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
+// Path Definitions for Sidebar/Header
+$assets_path = '../../assets/'; // Pointing to root assets if needed, or if using admin assets: '../../admin/assets/'
+// Actually, looking at other student files, they usually use '../admin/assets/' (from student/). 
+// From student/steno/, it should be '../../admin/assets/'.
+// Let's check how sidebar uses it.
+// Sidebar uses it for logo: $assets_path . '../assets/images/...' -> this logic in sidebar is weird: $assets_path . '../assets/images'
+// If $assets_path is '../../admin/assets/', then image src = '../../admin/assets/../assets/images/...' = '../../admin/images/...' -> Wrong.
+// The sidebar image path was: `../assets/images/paryag-computer-logo.jpeg`. 
+// If specific file is `student/index.php`, path is `../assets/...` (up one from student to root).
+// If file is `student/steno/index.php`, path should be `../../assets/...`.
+// So $assets_path is NOT helpful for the image if it points to 'admin/assets'.
+// Let's look at sidebar change again.
+// I changed sidebar image to: `src="<?php echo isset($assets_path) ? $assets_path : '../'; ?>../assets/images/...`
+// If I leave $assets_path unset in student/index.php, it uses '../'. Result: `../../assets/images...` -> Correct for student/index.php? No. 
+// student/index.php -> `../` + `../assets` = `../../assets`. Wait. 
+// Original sidebar had `../assets/images/...`. From `student/` this goes to `root/assets`. Correct.
+// So default prefix was empty or `./` effectively? No, strictly `../`.
+// If I am in `student/steno/`, I need `../../`.
+// So I should define a specific variable for "Root Path" or similar.
+// But I reused `$assets_path`. 
+// Let's define `$base_url` as `../` in `steno/index.php`.
+// And for the logo...
+// In `steno/index.php`, if I set `$assets_path = '../../admin/assets/';` 
+// Then sidebar says: `../../admin/assets/` + `../assets/images/...` -> `../../admin/assets/../assets` -> `../../admin/assets`? No.
+// `path/to/dir/../other` = `path/to/other`.
+// `../../admin/assets/../assets` = `../../admin/assets` (parent of assets is admin) -> `../../admin/assets` ? No.
+// `admin/assets` parent is `admin`. So `admin/assets/../` is `admin/`. 
+// `../../admin/assets/../assets` = `../../admin/assets`. This is confusing. 
+// Simpler: I should just pass a variable `logo_path_prefix` or similar.
+// Or just reuse `$base_url`.
+// Sidebar: `<?php echo isset($base_url) ? $base_url : ''; ?>../assets/images/...`
+// In `student/index.php`, `$base_url` is empty. Link: `../assets`. Correct.
+// In `student/steno/index.php`, `$base_url` is `../`. Link: `../../assets`. Correct.
+// So I should fix Sidebar to use `$base_url` for the image too, not `$assets_path`.
+
+$base_url = '../';
+$assets_path = '../../admin/assets/'; // For CSS in header.php
+
+
 // Filters
 $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : 'all';
 $language_id = isset($_GET['language_id']) ? $_GET['language_id'] : '';

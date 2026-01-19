@@ -7,6 +7,8 @@ session_start();
 require_once '../database/db_config.php';
 require_once '../vendor/autoload.php';
 
+use Mpdf\Mpdf;
+
 if (!isset($_GET['id'])) {
     die("Result ID missing.");
 }
@@ -67,7 +69,7 @@ try {
         mkdir($tmpDir, 0777, true);
     }
 
-    use Mpdf\Mpdf;
+    // Check if tmp dir exists, valid for WAMP
     // Explicitly setting tempDir often fixes 500 errors on Windows/WAMP
     $mpdf = new Mpdf([
         'mode' => 'utf-8', 

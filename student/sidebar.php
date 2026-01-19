@@ -7,7 +7,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div class="sidebar-header">
         <div class="sidebar-brand">
             <!-- Ensure path to logo is correct relative to student/ folder -->
-            <img src="../assets/images/rgcsm-logo.png" alt="RGCSM Logo" style="max-height: 50px; width: auto;" class="img-fluid">
+            <img src="../assets/images/paryag-computer-logo.jpeg" alt="RGCSM Logo" style="max-height: 50px; width: auto;" class="img-fluid">
         </div>
     </div>
     

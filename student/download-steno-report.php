@@ -17,11 +17,9 @@ $result_id = $_GET['id'];
 $student_id = $_SESSION['student_id'] ?? 1;
 
 // Fetch Data
-$stmt = $conn->prepare("SELECT sr.*, st.test_title,
-                        s.name as student_name, s.father_name, s.mother_name, s.contact_number
+$stmt = $conn->prepare("SELECT sr.*, st.test_title
                         FROM steno_results sr 
                         JOIN steno_tests st ON sr.test_id = st.id 
-                        LEFT JOIN students s ON sr.student_id = s.id
                         WHERE sr.id = :id");
 $stmt->execute(['id' => $result_id]);
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -96,10 +94,10 @@ try {
     ';
 
     // Build HTML
-    $student_name = $data['student_name'] ?? 'Demo Student';
-    $father_name = $data['father_name'] ?? 'Demo Father';
-    $mother_name = $data['mother_name'] ?? 'Demo Mother';
-    $contact = $data['contact_number'] ?? '9876543210';
+    $student_name = 'Rahul Dhiman';
+    $father_name = 'Mr. Father Name'; 
+    $mother_name = 'Mrs. Mother Name';
+    $contact = '9876543210';
 
     $html = '
     <div class="header">
